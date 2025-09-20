@@ -23,13 +23,13 @@ const NoteItem = ({ item }: Props) => {
     <li className={css.listItem}>
       <Link href={`/notes/${item.id}`} className={css.content}>
         <p className={css.title}>{item.title}</p>
-        <div className={css.footer}>
-          <p className={css.tag}>{item.tag}</p>
-          <button className={css.button} onClick={handleDelteNotes}>
-            Delete
-          </button>
-        </div>
       </Link>
+      <div className={css.footer}>
+        <p className={css.tag}>{item.tag}</p>
+        <button className={css.button} onClick={handleDelteNotes}>
+          Delete
+        </button>
+      </div>
     </li>
   );
 };

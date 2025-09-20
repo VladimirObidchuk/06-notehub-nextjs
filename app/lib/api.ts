@@ -4,9 +4,18 @@ import { Note, NoteListResponse } from "../types/notes";
 axios.defaults.baseURL = "https://notehub-public.goit.study/api";
 const apiKey = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 
-export const getNotes = async () => {
+type GetNotesParams = {
+  search?: string;
+  tag?: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
+  page?: number;
+  perPage?: number;
+  sortBy?: "created" | "updated";
+};
+
+export const getNotes = async (params: GetNotesParams = {}) => {
   const res = await axios.get<NoteListResponse>("/notes", {
     headers: { accept: "application/json", Authorization: `Bearer ${apiKey}` },
+    params,
   });
   console.log("🚀 ~ res:", res);
   return res.data;
