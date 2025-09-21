@@ -1,12 +1,14 @@
 "use client";
 
 import { NoteListResponse } from "@/app/types/notes";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 
 import css from "./NotesPage.module.css";
 import Button from "../Button/Button";
 import SearchBox from "../SearchBox/SearchBox";
 import Pagination from "../Pagination/Pagination";
+import Modal from "../Modal/Modal";
+import NoteForm from "../NoteForm/NoteForm";
 
 type Props = {
   data: NoteListResponse;
@@ -17,15 +19,26 @@ type Props = {
 };
 
 const NotesPage = ({ data, children, setPage, setSearch }: Props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className={css.app}>
       <div className={css.toolbar}>
         <SearchBox onSearch={setSearch} />
         <Pagination totalPages={data.totalPages} onPageChange={setPage} />
-        <Button className={css.button} value="Create note +" typeBtn="button" />
+        <Button
+          className={css.button}
+          value="Create note +"
+          typeBtn="button"
+          onClick={() => setIsModalOpen(true)}
+        />
       </div>
 
       {children}
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <NoteForm onSuccess={() => setIsModalOpen(false)} />
+        </Modal>
+      )}
     </div>
   );
 };
