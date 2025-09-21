@@ -3,6 +3,7 @@ import css from "./NoteItem.module.css";
 import { Note } from "@/app/types/notes";
 import { deleteNote } from "@/app/lib/api";
 import Link from "next/link";
+import Button from "../Button/Button";
 
 type Props = {
   item: Note;
@@ -26,9 +27,13 @@ const NoteItem = ({ item }: Props) => {
       </Link>
       <div className={css.footer}>
         <p className={css.tag}>{item.tag}</p>
-        <button className={css.button} onClick={handleDelteNotes}>
-          Delete
-        </button>
+        <Button
+          typeBtn="button"
+          className={css.button}
+          onClick={handleDelteNotes}
+          value="Delete"
+        />
+        {/* <button>Delete</button> */}
       </div>
     </li>
   );

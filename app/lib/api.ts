@@ -17,7 +17,6 @@ export const getNotes = async (params: GetNotesParams = {}) => {
     headers: { accept: "application/json", Authorization: `Bearer ${apiKey}` },
     params,
   });
-  console.log("🚀 ~ res:", res);
   return res.data;
 };
 

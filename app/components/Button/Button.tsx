@@ -3,11 +3,13 @@ type Props = {
   value: string;
   className: string;
   typeBtn: "button" | "submit" | "reset";
+  name?: string;
+  onClick?: () => void;
 };
 
-const Button = ({ value, className, typeBtn }: Props) => {
+const Button = ({ value, className, name, typeBtn, onClick }: Props) => {
   return (
-    <button type={typeBtn} className={className}>
+    <button name={name} type={typeBtn} className={className} onClick={onClick}>
       {value}
     </button>
   );
