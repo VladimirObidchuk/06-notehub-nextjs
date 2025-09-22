@@ -3,7 +3,7 @@
 import Error from "@/app/error";
 import Loading from "@/app/loading";
 import NoteDetails from "@/components/NoteDetails/NoteDetails";
-import { getNotesById } from "@/lib/api";
+import { fetchNoteById } from "@/lib/api";
 import { Note } from "@/types/notes";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
@@ -15,7 +15,7 @@ const Details = () => {
 
   const { data, isLoading, isError, error } = useQuery<Note>({
     queryKey: ["note", noteId],
-    queryFn: () => getNotesById({ noteId }),
+    queryFn: () => fetchNoteById({ noteId }),
     enabled: !!noteId,
   });
   if (isLoading) return <Loading />;

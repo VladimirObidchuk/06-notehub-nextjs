@@ -20,7 +20,7 @@ export const getNotes = async (params: GetNotesParams = {}) => {
   return res.data;
 };
 
-export const getNotesById = async ({ noteId }: { noteId: string }) => {
+export const fetchNoteById = async ({ noteId }: { noteId: string }) => {
   const res = await axios.get<Note>(`/notes/${noteId}`, {
     headers: { accept: "application/json", Authorization: `Bearer ${apiKey}` },
   });
