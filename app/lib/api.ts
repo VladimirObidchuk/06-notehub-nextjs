@@ -1,10 +1,8 @@
 import axios from "axios";
 import { Note, NoteListResponse } from "../types/notes";
 
-axios.defaults.baseURL = "https://notehub-public.goit.study/ap";
+axios.defaults.baseURL = "https://notehub-public.goit.study/api";
 const apiKey = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
-
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 type GetNotesParams = {
   search?: string;
@@ -15,7 +13,6 @@ type GetNotesParams = {
 };
 
 export const getNotes = async (params: GetNotesParams = {}) => {
-  await delay(2000);
   const res = await axios.get<NoteListResponse>("/notes", {
     headers: { accept: "application/json", Authorization: `Bearer ${apiKey}` },
     params,
