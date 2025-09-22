@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import css from "./NoteItem.module.css";
 import { Note } from "@/app/types/notes";
-import { deleteNote } from "@/app/lib/api";
 import Link from "next/link";
 import Button from "../Button/Button";
+import { deleteNote } from "@/lib/api";
 
 type Props = {
   item: Note;

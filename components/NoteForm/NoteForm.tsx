@@ -5,8 +5,8 @@ import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import css from "./NoteForm.module.css";
 import Button from "../Button/Button";
-import { createNote } from "@/app/lib/api";
 import { useQueryClient } from "@tanstack/react-query";
+import { createNote } from "@/lib/api";
 
 type NoteFormValues = {
   title: string;

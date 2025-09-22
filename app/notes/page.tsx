@@ -1,13 +1,13 @@
 "use client";
 
-import { getNotes } from "../lib/api";
-import NoteList from "../components/NoteList/NoteList";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import NotesPage from "../components/NotesPage/NotesPage";
 import { useState } from "react";
 import { NoteListResponse } from "../types/notes";
 import Loading from "../loading";
 import Error from "../error";
+import NotesPage from "@/components/NotesPage/NotesPage";
+import NoteList from "@/components/NoteList/NoteList";
+import { getNotes } from "@/lib/api";
 
 const Notes = () => {
   const [page, setPage] = useState(1);
