@@ -25,7 +25,7 @@ const Notes = () => {
     placeholderData: keepPreviousData,
   });
   if (isLoading) return <Loading />;
-  if (isError) return <Error error={error} />;
+  if (isError) return <Error error={error} value="the list of notes" />;
   if (!data) return <p>No note found</p>;
 
   return (

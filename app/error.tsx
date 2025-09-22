@@ -2,12 +2,15 @@
 
 type Props = {
   error: Error;
+  value: string;
 };
 
-const Error = ({ error }: Props) => {
+const Error = ({ error, value }: Props) => {
   return (
     <div className="content">
-      <p>Could not fetch the list of notes. {error.message}</p>
+      <p>
+        Could not fetch{`${value}`}. {error.message}
+      </p>
     </div>
   );
 };
