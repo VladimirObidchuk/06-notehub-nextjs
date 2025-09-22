@@ -1,18 +1,22 @@
 "use client";
 
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import css from "./NoteForm.module.css";
+import Button from "../Button/Button";
+import { createNote } from "@/app/lib/api";
+import { useQueryClient } from "@tanstack/react-query";
 
 type NoteFormValues = {
   title: string;
   content: string;
-  tag: string;
+  tag: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
 };
 
 type Props = {
   onSuccess: () => void;
+  onClose: () => void;
 };
 
 const validationSchema = Yup.object({
@@ -23,7 +27,8 @@ const validationSchema = Yup.object({
     .required(),
 });
 
-const NoteForm = ({ onSuccess }: Props) => {
+const NoteForm = ({ onSuccess, onClose }: Props) => {
+  const queryClient = useQueryClient();
   const initialValues: NoteFormValues = {
     title: "",
     content: "",
@@ -32,22 +37,11 @@ const NoteForm = ({ onSuccess }: Props) => {
 
   const handleSubmit = async (
     values: NoteFormValues,
-    { setSubmitting, resetForm }: any
+    { setSubmitting, resetForm }: FormikHelpers<NoteFormValues>
   ) => {
     try {
-      const res = await fetch("/api/notes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer YOUR_TOKEN", // TODO: вставити токен
-        },
-        body: JSON.stringify(values),
-      });
-
-      if (!res.ok) {
-        throw new Error(`Error: ${res.status}`);
-      }
-
+      await createNote(values);
+      await queryClient.invalidateQueries({ queryKey: ["notes"] });
       resetForm();
       onSuccess();
     } catch (err) {
@@ -65,15 +59,15 @@ const NoteForm = ({ onSuccess }: Props) => {
     >
       {({ isSubmitting }) => (
         <Form className={css.form}>
-          <div className={css.field}>
+          <div className={css.formGroup}>
             <label htmlFor="title">Title</label>
-            <Field name="title" type="text" />
+            <Field name="title" type="text" as="input" className={css.input} />
             <ErrorMessage name="title" component="div" className={css.error} />
           </div>
 
-          <div className={css.field}>
+          <div className={css.formGroup}>
             <label htmlFor="content">Content</label>
-            <Field name="content" as="textarea" />
+            <Field name="content" as="textarea" className={css.textarea} />
             <ErrorMessage
               name="content"
               component="div"
@@ -81,9 +75,9 @@ const NoteForm = ({ onSuccess }: Props) => {
             />
           </div>
 
-          <div className={css.field}>
+          <div className={css.formGroup}>
             <label htmlFor="tag">Tag</label>
-            <Field name="tag" as="select">
+            <Field name="tag" as="select" className={css.select}>
               <option value="Work">Work</option>
               <option value="Personal">Personal</option>
               <option value="Meeting">Meeting</option>
@@ -92,10 +86,20 @@ const NoteForm = ({ onSuccess }: Props) => {
             </Field>
             <ErrorMessage name="tag" component="div" className={css.error} />
           </div>
-
-          <button type="submit" disabled={isSubmitting}>
-            Create
-          </button>
+          <div className={css.btnGroup}>
+            <Button
+              typeBtn="button"
+              className={css.cancelButton}
+              value="Cancel"
+              onClick={onClose}
+            />
+            <Button
+              typeBtn="submit"
+              disabled={isSubmitting}
+              className={css.submitButton}
+              value="Create"
+            />
+          </div>
         </Form>
       )}
     </Formik>

@@ -1,4 +1,3 @@
-import Button from "../Button/Button";
 import css from "./Modal.module.css";
 import React, { ReactNode } from "react";
 
@@ -9,9 +8,8 @@ type Props = {
 
 const Modal = ({ children, onClose }: Props) => {
   return (
-    <div className={css.overlay} onClick={onClose}>
+    <div className={css.backdrop} onClick={onClose}>
       <div className={css.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={css.closeBtn} onClick={onClose} />
         {children}
       </div>
     </div>

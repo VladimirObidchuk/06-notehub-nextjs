@@ -32,3 +32,16 @@ export const deleteNote = async ({ noteId }: { noteId: string }) => {
     headers: { accept: "application/json", Authorization: `Bearer ${apiKey}` },
   });
 };
+
+export const createNote = async (note: {
+  title: string;
+  content: string;
+  tag: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
+}) => {
+  await axios.post<Note>("/notes", note, {
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+  });
+};

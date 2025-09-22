@@ -36,7 +36,10 @@ const NotesPage = ({ data, children, setPage, setSearch }: Props) => {
       {children}
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
-          <NoteForm onSuccess={() => setIsModalOpen(false)} />
+          <NoteForm
+            onSuccess={() => setIsModalOpen(false)}
+            onClose={() => setIsModalOpen(false)}
+          />
         </Modal>
       )}
     </div>

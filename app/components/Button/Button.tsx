@@ -5,6 +5,7 @@ type Props = {
   typeBtn: "button" | "submit" | "reset";
   name?: string;
   onClick?: () => void;
+  disabled?: boolean;
 };
 
 const Button = ({ value, className, name, typeBtn, onClick }: Props) => {
