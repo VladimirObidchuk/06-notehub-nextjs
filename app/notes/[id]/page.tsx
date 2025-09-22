@@ -1,9 +1,10 @@
 "use client";
-import NoteDetails from "@/app/components/NoteDetails/NoteDetails";
+
 import Error from "@/app/error";
-import { getNotesById } from "@/app/lib/api";
 import Loading from "@/app/loading";
-import { Note } from "@/app/types/notes";
+import NoteDetails from "@/components/NoteDetails/NoteDetails";
+import { getNotesById } from "@/lib/api";
+import { Note } from "@/types/notes";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import React from "react";
