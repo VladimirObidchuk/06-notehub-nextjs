@@ -1,9 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import css from "./NoteItem.module.css";
-import { Note } from "@/app/types/notes";
+
 import Link from "next/link";
 import Button from "../Button/Button";
 import { deleteNote } from "@/lib/api";
+import { Note } from "@/types/notes";
 
 type Props = {
   item: Note;
@@ -33,7 +34,6 @@ const NoteItem = ({ item }: Props) => {
           onClick={handleDelteNotes}
           value="Delete"
         />
-        {/* <button>Delete</button> */}
       </div>
     </li>
   );

@@ -1,6 +1,5 @@
 "use client";
 
-import { NoteListResponse } from "@/app/types/notes";
 import React, { ReactNode, useState } from "react";
 
 import css from "./NotesPage.module.css";
@@ -9,6 +8,7 @@ import SearchBox from "../SearchBox/SearchBox";
 import Pagination from "../Pagination/Pagination";
 import Modal from "../Modal/Modal";
 import NoteForm from "../NoteForm/NoteForm";
+import { NoteListResponse } from "@/types/notes";
 
 type Props = {
   data: NoteListResponse;

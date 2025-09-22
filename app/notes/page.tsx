@@ -2,12 +2,13 @@
 
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { NoteListResponse } from "../types/notes";
+
 import Loading from "../loading";
 import Error from "../error";
 import NotesPage from "@/components/NotesPage/NotesPage";
 import NoteList from "@/components/NoteList/NoteList";
 import { getNotes } from "@/lib/api";
+import { NoteListResponse } from "@/types/notes";
 
 const Notes = () => {
   const [page, setPage] = useState(1);

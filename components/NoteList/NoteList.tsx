@@ -1,7 +1,7 @@
 import css from "./NoteList.module.css";
 
 import NoteItem from "../NoteItem/NoteItem";
-import { Note } from "@/app/types/notes";
+import { Note } from "@/types/notes";
 
 type Props = {
   notes: Note[];
