@@ -2,7 +2,7 @@
 
 import React from "react";
 import css from "./NoteDetails.module.css";
-import { Note } from "@/types/notes";
+import { Note } from "@/types/note";
 
 type Props = {
   data: Note;

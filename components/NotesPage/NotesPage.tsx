@@ -8,7 +8,7 @@ import SearchBox from "../SearchBox/SearchBox";
 import Pagination from "../Pagination/Pagination";
 import Modal from "../Modal/Modal";
 import NoteForm from "../NoteForm/NoteForm";
-import { NoteListResponse } from "@/types/notes";
+import { NoteListResponse } from "@/types/note";
 
 type Props = {
   data: NoteListResponse;

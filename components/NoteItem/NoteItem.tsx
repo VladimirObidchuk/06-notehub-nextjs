@@ -4,7 +4,7 @@ import css from "./NoteItem.module.css";
 import Link from "next/link";
 import Button from "../Button/Button";
 import { deleteNote } from "@/lib/api";
-import { Note } from "@/types/notes";
+import { Note } from "@/types/note";
 
 type Props = {
   item: Note;
